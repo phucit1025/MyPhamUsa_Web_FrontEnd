@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+.sidebar .sidebar-background {
+    background-position: right center !important;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background-color: rgba(170, 170, 170, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(170, 170, 170, 0.5);
+  border-radius: 10px;
+  cursor: pointer;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(170, 170, 170);
+}
+.perfect-scrollbar-on .main-panel {
+  height: fit-content !important;
+  max-height: none !important;
+  min-height: 100vh;
+  padding-bottom: 53px;
+}
+.perfect-scrollbar-on .main-panel app-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+kendo-grid.kudo-grid {
+  margin-top: 6px;
+}
+kendo-grid.kudo-grid.fixed {
+  height: calc(100vh - 30px) !important;
+}
+kendo-grid.kudo-grid.flexible {
+  min-height: calc(100vh - 196px) !important;
+}
+kendo-pager-page-sizes select {
+  padding-left: 6px;
+}

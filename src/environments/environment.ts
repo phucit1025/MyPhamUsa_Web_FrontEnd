@@ -4,5 +4,19 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  token: 'AUTH_TOKEN',
+  endPoint: 'http://45.119.212.145:4453/',
+  apiPaths: {
+    account: {
+      login: 'api/Account/LoginV2',
+      getAdminInfo: 'api/Account/GetAdminInformation',
+      changePassword: 'api/Account/ChangePassword',
+    },
+    product: {
+      getProductsPaging: '/api/Product/GetProductsPaging',
+      createProduct: '/api/Product/CreateProduct',
+      deleteProduct: '/api/Product/DeleteProduct',
+    },
+  },
 };

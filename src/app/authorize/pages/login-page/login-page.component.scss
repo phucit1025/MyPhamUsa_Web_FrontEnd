@@ -1,0 +1,47 @@
+.login-wrapper {
+    height: 100vh;
+    background-color: #007be8;
+    & > * {
+        height: 100%;
+    }
+    .bg-pic {
+        position: absolute;
+        width: 100%;
+        overflow: hidden;
+    }
+}
+div.img-holder {
+    background: url('/assets/bg-01.jpg');
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    position: relative;
+  
+    &::after {
+      display: block;
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background-color: #000000;
+      opacity: 0.5;
+    }
+}
+img.logo {
+    width: 100%;
+}
+.login-card-wrapper {
+    position: relative;
+    .login-card {
+        display: block;
+        width: 496px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -70%);
+    }
+    .login-form {
+        padding: 20px 30px;
+    }
+}

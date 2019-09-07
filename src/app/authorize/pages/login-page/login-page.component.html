@@ -1,0 +1,58 @@
+<div class="login-wrapper">
+	<!-- START Login Background Pic Wrapper-->
+	<div class="bg-pic">
+		<!-- START Background Pic-->
+		<div class="img-holder"></div>
+		<!-- START Background Caption-->
+		<!-- END Background Caption-->
+	</div>
+	<!-- END Login Background Pic Wrapper-->
+	<!-- START Login Right Container-->
+	<div class="login-card-wrapper">
+		<div class="card login-card">
+			<div class="card-header card-header-danger">
+				<h4 class="card-title">MyMy Cosmetics</h4>
+				<p class="card-category">Vui lòng đăng nhập để tiếp tục</p>
+			</div>
+			<div class="card-body">
+				<form class="login-form" [formGroup]="form" (submit)="login($event)">
+					<div class="row mb-3">
+						<div class="col-md-12">
+							<mat-form-field class="example-full-width">
+								<input
+									matInput
+									type="text"
+									placeholder="Tên đăng nhập"
+									formControlName="username"
+									(blur)="resetLoginFailed()"
+									(input)="resetLoginFailed()">
+								<mat-error *ngIf="form.controls['username'].invalid">Vui lòng điền Tên đăng nhập.</mat-error>
+							</mat-form-field>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-md-12">
+							<mat-form-field class="example-full-width">
+								<input
+									matInput
+									type="password"
+									placeholder="Mật khẩu"
+									formControlName="password"
+									(blur)="resetLoginFailed()"
+									(input)="resetLoginFailed()">
+								<mat-error *ngIf="form.controls['password'].invalid">Vui lòng điền Mật khẩu.</mat-error>
+							</mat-form-field>
+						</div>
+					</div>
+					<div class="row justify-content-center" *ngIf="loginFailed">
+						<mat-error>{{loginFailed}}</mat-error>
+					</div>
+					<div class="row justify-content-center">
+						<button mat-raised-button type="submit" class="btn btn-danger pull-right">Đăng nhập</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- END Login Right Container-->
+</div>

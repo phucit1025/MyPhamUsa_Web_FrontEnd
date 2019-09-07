@@ -1,0 +1,43 @@
+<kendo-grid
+  class="kudo-grid fixed"
+  [height]="'auto'"
+  [data]="state"
+  [columnMenu]="false"
+  [pageSize]="searchState.size"
+  [pageable]="{
+    buttonCount: searchState.buttonCount,
+    pageSizes: searchState.pageSizes
+  }"
+  [skip]="searchState.skip"
+  [sortable]="true"
+  [filterable]="true"
+  (pageChange)="pageChange($event)">
+  <ng-template kendoGridToolbarTemplate>
+    <app-product-create (refresh)="refreshData()"></app-product-create>
+  </ng-template>
+  <kendo-grid-column field="code" title="Code" width="150">
+  </kendo-grid-column>
+  <kendo-grid-column field="name" title="Tên sản phẩm" width="250">
+  </kendo-grid-column>
+  <kendo-grid-column field="description" title="Chi tiết" width="250">
+  </kendo-grid-column>
+  <kendo-grid-column field="price" title="Giá gốc" width="150">
+  </kendo-grid-column>
+  <kendo-grid-column field="sellPrice" title="Giá bán" width="150">
+  </kendo-grid-column>
+  <kendo-grid-column field="availableQuantity" title="Số lượng trong kho" width="150">
+  </kendo-grid-column>
+  <kendo-grid-column
+    title="Thao tác"
+    width="150"
+    [columnMenu]="false">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <button mat-raised-button class="btn btn-warning btn-round btn-just-icon mr-2">
+        <i class="material-icons">edit</i>
+      </button>
+      <button mat-raised-button class="btn btn-danger btn-round btn-just-icon" (click)="delete(dataItem.id)">
+        <i class="material-icons">delete</i>
+      </button>
+    </ng-template>
+  </kendo-grid-column>
+</kendo-grid>

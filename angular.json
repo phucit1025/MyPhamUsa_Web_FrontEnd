@@ -21,6 +21,10 @@
               "src/favicon.ico"
             ],
             "styles": [
+              {
+                "input": "node_modules/@progress/kendo-theme-material/dist/all.css"
+              },
+              "src/styles.css",
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
               "src/assets/scss/material-dashboard.scss",
               "src/assets/css/demo.css"
@@ -91,6 +95,10 @@
               "node_modules/chartist/dist/chartist.js"
             ],
             "styles": [
+              {
+                "input": "node_modules/@progress/kendo-theme-material/dist/all.css"
+              },
+              "src/styles.css",
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
               "src/assets/scss/material-dashboard.scss",
               "src/assets/css/demo.css"
@@ -141,7 +149,8 @@
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
-      "styleext": "scss"
+      "styleext": "scss",
+      "spec": false
     },
     "@schematics/angular:directive": {
       "prefix": "app"
