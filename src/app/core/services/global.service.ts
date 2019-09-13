@@ -7,15 +7,15 @@ import { Token } from '../models/token';
 })
 export class GlobalService {
 
-  isLogin: boolean;
+  isLogin = false;
   username: string;
   requestEvent: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(
     private authGuardService: AuthGuardService
   ) {
-    const token: Token = this.authGuardService.getToken();
-    this.isLogin = token ? true : false;
+    // const token: Token = this.authGuardService.getToken();
+    // this.isLogin = token ? true : false;
     this.username = this.authGuardService.getUsername();
   }
 }

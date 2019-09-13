@@ -47,6 +47,7 @@
     "@progress/kendo-theme-default": "latest",
     "@progress/kendo-theme-material": "^3.2.0",
     "ajv": "6.10.0",
+    "angular2-text-mask": "^9.0.0",
     "arrive": "2.4.1",
     "bootstrap": "4.3.1",
     "bootstrap-material-design": "4.1.2",
@@ -64,6 +65,7 @@
     "rxjs": "6.5.2",
     "rxjs-compat": "6.5.2",
     "sweetalert2": "^8.17.1",
+    "text-mask-addons": "^3.8.0",
     "web-animations-js": "2.3.1",
     "zone.js": "0.9.1"
   },

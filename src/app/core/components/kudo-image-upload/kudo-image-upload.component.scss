@@ -1,0 +1,96 @@
+.preview-images-wrapper {
+  height: auto;
+  width: 100%;
+  .kudo-upload-button-wrapper {
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin: 4px;
+    float: left;
+    .kudo-image-upload-placeholder-button {
+      color: #7a8994;
+      display: flex;
+      flex-direction: column;
+      width: 100px;
+      height: 100px;
+      justify-content: center;
+      text-align: center;
+      border: 1px dashed #eaecee;
+      border-radius: 4px;
+      background-color: #f6f9fa;
+      cursor: pointer;
+      transition: border-color .3s ease;
+      &:hover {
+        border-color: #7a8994;
+      }
+      .kudo-image-upload-label {
+        line-height: 24px;
+      }
+    }
+  }
+  .kudo-upload-list-item {
+    padding: 5px;
+    border: 1px solid rgba(0,0,0,.07);
+    margin: 4px;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    display: inline-flex;
+    border-radius: 2px;
+    justify-content: center;
+    flex-direction: column;
+    float: left;
+    .kudo-upload-list-item-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      .kudo-upload-image-wrapper {
+        width: 100%;
+        height: 100%;
+      }
+      .kudo-upload-list-item-actions {
+        position: absolute;
+        visibility: hidden;
+        opacity: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        bottom: 0;
+        top: 0;
+        background: rgba(0,0,0,.3);
+        transition: opacity .2s ease;
+        border-radius: 3px;
+        i {
+          align-self: center;
+          padding: 0 4px;
+          font-size: 16px;
+          color: rgba(255,255,255,.85);
+          cursor: pointer;
+        }
+      }
+    }
+    &:hover {
+      .kudo-upload-list-item-actions {
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+    }
+  }
+  &.disabled {
+    padding-top: 20px;
+    .remove-icon {
+      display: none;
+    }
+  }
+}
+::ng-deep {
+  kudo-image-upload:focus {
+    .kudo-image-upload-placeholder-button {
+      border-color: #7a8994 !important;
+    }
+  }
+}

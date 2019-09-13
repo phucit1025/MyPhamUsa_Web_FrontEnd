@@ -14,9 +14,15 @@ export const environment = {
       changePassword: 'api/Account/ChangePassword',
     },
     product: {
-      getProductsPaging: '/api/Product/GetProductsPaging',
+      getProduct: '/api/Product/GetProduct',
+      getProducts: '/api/Product/GetProducts',
       createProduct: '/api/Product/CreateProduct',
+      updateProduct: '/api/Product/UpdateProduct',
       deleteProduct: '/api/Product/DeleteProduct',
+      isAvailableCode: '/api/Product/IsAvailableCode',
+    },
+    category: {
+      getCategories: '/api/Category/GetCategories',
     },
   },
 };

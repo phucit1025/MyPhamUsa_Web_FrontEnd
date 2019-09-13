@@ -42,3 +42,17 @@ kendo-grid.kudo-grid.flexible {
 kendo-pager-page-sizes select {
   padding-left: 6px;
 }
+.card .card-header-product:not(.card-header-icon):not(.card-header-text) {
+  background: linear-gradient(60deg, #5e70da, #3f51b5);
+}
+.mat-dialog-container {
+  padding: 0 !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+.cdk-overlay-container {
+  z-index: 1031 !important;
+}
+.cdk-overlay-pane {
+  overflow-y: auto;
+}

@@ -1,0 +1,20 @@
+<input #hiddenUpload class="d-none" type="file" (change)="loadImageBase64($event)">
+<div class="preview-images-wrapper clearfix" [class.disabled]="disabled">
+  <div class="kudo-upload-list-item" *ngFor="let image of imageList; let i = index">
+    <div class="kudo-upload-list-item-inner">
+      <div class="d-flex">
+        <img class="kudo-upload-image-wrapper" src="{{image}}">
+      </div>
+      <span class="kudo-upload-list-item-actions">
+        <i class="material-icons preview-icon" title="{{PreviewText}}">remove_red_eye</i>
+        <i *ngIf="!disabled" class="material-icons remove-icon" title="{{RemoveText}}" (click)="removeImageAt(i, hiddenUpload)">close</i>
+      </span>
+    </div>
+  </div>
+  <div *ngIf="!disabled" class="kudo-upload-button-wrapper">
+    <div class="kudo-image-upload-placeholder-button" (click)="hiddenUpload.click()">
+      <i class="material-icons kudo-image-upload-icon">cloud_upload</i>
+      <span class="kudo-image-upload-label">{{UploadText}}</span>
+    </div>
+  </div>
+</div>

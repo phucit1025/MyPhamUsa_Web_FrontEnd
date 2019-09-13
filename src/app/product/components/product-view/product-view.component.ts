@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'app/product/services/product.service';
 import { ProductPagingList } from 'app/product/models/product';
 import { PageChangeEvent } from '@progress/kendo-angular-grid';
+import { MatDialog } from '@angular/material';
+import { ProductEditComponent } from '../product-edit/product-edit.component';
 
 @Component({
   selector: 'app-product-view',
@@ -11,7 +13,7 @@ import { PageChangeEvent } from '@progress/kendo-angular-grid';
 export class ProductViewComponent implements OnInit {
   searchState = {
     index: 0,
-    size: 10,
+    size: 20,
     buttonCount: 5,
     info: true,
     type: 'numeric',
@@ -25,7 +27,10 @@ export class ProductViewComponent implements OnInit {
     total: 0,
   };
 
+  dialogRef: any;
+
   constructor(
+    private dialog: MatDialog,
     private productService: ProductService
   ) { }
 
@@ -41,11 +46,11 @@ export class ProductViewComponent implements OnInit {
   }
 
   fetchData() {
-    this.productService.getProductsPaging(this.searchState.index, this.searchState.size)
+    this.productService.getProducts(this.searchState.index, this.searchState.size)
       .then(
         (response: ProductPagingList) => {
           this.state.data = response.results;
-          this.state.total = response.totalPages;
+          this.state.total = response.total;
         },
         error => console.error(error)
       );
@@ -54,6 +59,13 @@ export class ProductViewComponent implements OnInit {
   refreshData() {
     this.searchState.index = 0;
     this.fetchData();
+  }
+
+  openUpdateDialog(id: number) {
+    this.dialogRef = this.dialog.open(ProductEditComponent, {
+      width: '70vw',
+      data: {id: id},
+    });
   }
 
   delete(id: number) {
