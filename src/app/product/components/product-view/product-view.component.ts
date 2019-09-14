@@ -150,6 +150,9 @@ export class ProductViewComponent implements OnInit {
   issue() {
     if (this.formIssue.valid) {
       const data = this.formIssue.value;
+      ['quantity'].forEach((e) => {
+        data[e] = +`${data[e]}`.split(',').join('');
+      });
       this.storageService.issue(data)
         .then(
           (response) => {
@@ -180,6 +183,9 @@ export class ProductViewComponent implements OnInit {
   receive() {
     if (this.formReceive.valid) {
       const data = this.formReceive.value;
+      ['quantity'].forEach((e) => {
+        data[e] = +`${data[e]}`.split(',').join('');
+      });
       this.storageService.receive(data)
         .then(
           (response) => {
