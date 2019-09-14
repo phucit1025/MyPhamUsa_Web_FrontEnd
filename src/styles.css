@@ -56,3 +56,15 @@ kendo-pager-page-sizes select {
 .cdk-overlay-pane {
   overflow-y: auto;
 }
+.cdk-overlay-pane::-webkit-scrollbar-track {
+  background-color: rgba(240, 240, 240, 0.1);
+}
+.cdk-overlay-pane::-webkit-scrollbar-thumb {
+  background-color: rgba(240, 240, 240, 0.5);
+}
+.cdk-overlay-pane::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(240, 240, 240);
+}
+.k-loading-color {
+  opacity: 0.53;
+}

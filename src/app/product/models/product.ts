@@ -1,7 +1,5 @@
-export class Product {
-}
 export class ProductPagingList {
-  total: number;
-  totalPages: number;
+  total?: number;
+  totalPages?: number;
   results: any[];
 }

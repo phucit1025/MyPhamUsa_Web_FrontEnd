@@ -1,5 +1,17 @@
-import { Component, OnInit, Input, OnDestroy, HostBinding, Optional, Self, ElementRef, HostListener, forwardRef } from '@angular/core';
-import { MatFormFieldControl } from '@angular/material';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnDestroy,
+  HostBinding,
+  Optional,
+  Self,
+  ElementRef,
+  HostListener,
+  forwardRef,
+  ViewChild,
+} from '@angular/core';
+import { MatFormFieldControl, MatDialog, MatDialogRef } from '@angular/material';
 import { Subject } from 'rxjs';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { FocusMonitor } from '@angular/cdk/a11y';
@@ -21,6 +33,10 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 export class KudoImageUploadComponent implements OnInit, OnDestroy, ControlValueAccessor, MatFormFieldControl<string[]> {
   static nextId = 0;
   imageList: string[] = [];
+  previewing: string;
+  dialogRef: MatDialogRef<any>;
+
+  @ViewChild('previewImageContent', {static: false}) previewImageContent: any;
 
   stateChanges = new Subject<void>();
   focused = false;
@@ -104,6 +120,7 @@ export class KudoImageUploadComponent implements OnInit, OnDestroy, ControlValue
 
   constructor(
     @Optional() @Self() public ngControl: NgControl,
+    private dialog: MatDialog,
     private fm: FocusMonitor,
     private elRef: ElementRef<HTMLElement>
   ) {
@@ -127,6 +144,13 @@ export class KudoImageUploadComponent implements OnInit, OnDestroy, ControlValue
     this.fm.stopMonitoring(this.elRef.nativeElement);
   }
 
+  showPreviewImage(image: string) {
+    this.previewing = image;
+    this.dialogRef = this.dialog.open(this.previewImageContent, {
+      width: '70vw',
+    });
+  }
+
   @HostListener('blur')
   onBlur() {
     if (this.ngControl) {
@@ -140,7 +164,7 @@ export class KudoImageUploadComponent implements OnInit, OnDestroy, ControlValue
   }
 
   onContainerClick(event: MouseEvent) {
-    if (!this.disabled) {
+    if (!this._disabled) {
       this.elRef.nativeElement.focus();
     }
   }

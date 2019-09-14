@@ -11,6 +11,7 @@ const routes: Routes = [
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
+    canActivate: [AuthGuardService],
   },
   {
     path: '',
@@ -29,6 +30,21 @@ const routes: Routes = [
   {
     path: 'product',
     loadChildren: './product/product.module#ProductModule',
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'account',
+    loadChildren: './user/user.module#UserModule',
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'category',
+    loadChildren: './category/category.module#CategoryModule',
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'storage',
+    loadChildren: './storage/storage.module#StorageModule',
     canActivate: [AuthGuardService],
   },
 ];

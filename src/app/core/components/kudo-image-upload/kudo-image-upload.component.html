@@ -6,7 +6,7 @@
         <img class="kudo-upload-image-wrapper" src="{{image}}">
       </div>
       <span class="kudo-upload-list-item-actions">
-        <i class="material-icons preview-icon" title="{{PreviewText}}">remove_red_eye</i>
+        <i class="material-icons preview-icon" title="{{PreviewText}}" (click)="showPreviewImage(image)">remove_red_eye</i>
         <i *ngIf="!disabled" class="material-icons remove-icon" title="{{RemoveText}}" (click)="removeImageAt(i, hiddenUpload)">close</i>
       </span>
     </div>
@@ -18,3 +18,11 @@
     </div>
   </div>
 </div>
+<ng-template #previewImageContent>
+  <div class="col d-flex justify-content-center align-items-center my-5">
+    <div class="kudo-previewing-image-wrapper">
+      <img class="kudo-previewing-image" src="{{previewing}}">
+      <i class="material-icons kudo-close-previewing-button" (click)="dialogRef.close()">close</i>
+    </div>
+  </div>
+</ng-template>

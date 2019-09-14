@@ -8,6 +8,7 @@
     buttonCount: searchState.buttonCount,
     pageSizes: searchState.pageSizes
   }"
+  [loading]="state.loading"
   [skip]="searchState.skip"
   (pageChange)="pageChange($event)">
   <ng-template kendoGridToolbarTemplate>
@@ -51,14 +52,95 @@
   </kendo-grid-column>
   <kendo-grid-column
     title="Thao tác"
-    width="150">
+    width="250">
     <ng-template kendoGridCellTemplate let-dataItem>
-      <button mat-raised-button class="btn btn-warning btn-round btn-just-icon mr-2" (click)="openUpdateDialog(dataItem.id)">
+      <button mat-raised-button class="btn btn-warning btn-round btn-just-icon mr-2" (click)="openUpdateDialog(dataItem.id)" title="Cập nhật">
         <i class="material-icons">edit</i>
       </button>
-      <button mat-raised-button class="btn btn-danger btn-round btn-just-icon" (click)="delete(dataItem.id)">
+      <button mat-raised-button class="btn btn-danger btn-round btn-just-icon mr-2" (click)="delete(dataItem.id)" title="Xóa">
         <i class="material-icons">delete</i>
+      </button>
+      <button mat-raised-button class="btn btn-success btn-round btn-just-icon mr-2" (click)="openIssueDialog(dataItem.id)" title="Xuất kho">
+        <i class="material-icons">unarchive</i>
+      </button>
+      <button mat-raised-button class="btn btn-info btn-round btn-just-icon" (click)="openReceiveDialog(dataItem.id)" title="Nhập kho">
+        <i class="material-icons">archive</i>
       </button>
     </ng-template>
   </kendo-grid-column>
 </kendo-grid>
+
+<ng-template #issueDialogContent>
+  <div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-header card-header-success">
+              <h4 class="card-title">Xuất Kho</h4>
+              <p class="card-category">Nhập thông tin Xuất kho</p>
+            </div>
+            <div class="card-body pt-4">
+              <form [formGroup]="formIssue" (submit)="issue($event)">
+                <div class="row mb-3">
+                  <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Số lượng xuất kho" [textMask]="{mask: quantityNoDecMask}" type="text" formControlName="quantity">
+                      <mat-error *ngIf="formIssue.controls['quantity'].errors">Vui lòng nhập Số lượng xuất kho lớn hơn 0</mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                      <textarea matInput placeholder="Mô tả" rows="5" formControlName="description"></textarea>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <button mat-raised-button type="submit" class="btn btn-success">Xác nhận</button>
+                <button mat-raised-button class="btn btn-secondary" (click)="closeIssueDialog($event)">Hủy</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #receiveDialogContent>
+  <div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-header card-header-info">
+              <h4 class="card-title">Nhập Kho</h4>
+              <p class="card-category">Nhập thông tin Nhập kho</p>
+            </div>
+            <div class="card-body pt-4">
+              <form [formGroup]="formReceive" (submit)="receive($event)">
+                <div class="row mb-3">
+                  <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Số lượng nhập kho" [textMask]="{mask: quantityNoDecMask}" type="text" formControlName="quantity">
+                      <mat-error *ngIf="formReceive.controls['quantity'].errors">Vui lòng nhập Số lượng nhập kho lớn hơn 0</mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                      <textarea matInput placeholder="Mô tả" rows="5" formControlName="description"></textarea>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <button mat-raised-button type="submit" class="btn btn-info">Xác nhận</button>
+                <button mat-raised-button class="btn btn-secondary" (click)="closeReceiveDialog($event)">Hủy</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

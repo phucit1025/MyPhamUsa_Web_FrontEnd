@@ -33,12 +33,6 @@ export class ProductService {
     ).toPromise();
   }
 
-  getCategories(): Promise<any> {
-    return this.httpClient.get<any>(
-      `${environment.endPoint}${environment.apiPaths.category.getCategories}`
-    ).toPromise();
-  }
-
   createProduct(productCM: any): Promise<any> {
     return this.httpClient.post(
       `${environment.endPoint}${environment.apiPaths.product.createProduct}`,
@@ -53,15 +47,15 @@ export class ProductService {
     ).toPromise();
   }
 
-  deleteProduct(productId: number): Promise<ProductPagingList> {
-    return this.httpClient.delete<ProductPagingList>(
+  deleteProduct(productId: number): Promise<any> {
+    return this.httpClient.delete<any>(
       `${environment.endPoint}${environment.apiPaths.product.deleteProduct}?productId=${productId}`
     ).toPromise();
   }
 
-  isAvailableCode(productCode: string): Promise<any> {
+  isAvailableCode(productCode: string, productId: number = 0): Promise<any> {
     const model = {
-      productId: 0,
+      productId: productId,
       code: productCode,
     };
     return this.httpClient.post(

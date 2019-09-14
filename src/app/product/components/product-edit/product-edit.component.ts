@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { ProductService } from 'app/product/services/product.service';
 import { RequiredArrayValidation } from '../product-create/product-create.component';
+import Swal from 'sweetalert2';
+import { CategoryService } from 'app/category/services/category.service';
 
 @Component({
   selector: 'app-product-edit',
@@ -25,9 +27,10 @@ export class ProductEditComponent implements OnInit {
   timeOutDelay = 500;
 
   constructor(
-    public dialogRef: MatDialogRef<ProductEditComponent>,
+    public dialogRef: MatDialogRef<any>,
     @Inject(MAT_DIALOG_DATA) public data: {id: number},
     private formBuilder: FormBuilder,
+    private categoryService: CategoryService,
     private productService: ProductService
   ) { }
 
@@ -39,14 +42,13 @@ export class ProductEditComponent implements OnInit {
       description: new FormControl(''),
       originalPrice: new FormControl(0, [Validators.required]),
       sellPrice: new FormControl(0, [Validators.required]),
-      imagePaths: new FormControl([]),
+      imagePaths: new FormControl({value: [], disabled: true}),
       categoryIds: new FormControl([]),
     }, {
       // tslint:disable-next-line: no-use-before-declare
       validators: [RequiredArrayValidation.requiredArray.bind(this, ['categoryIds'])]
     });
-    this.form.controls['imagePaths'].disable();
-    this.productService.getCategories()
+    this.categoryService.getCategories()
       .then(
         (response) => {
           this.categoryList = response;
@@ -65,6 +67,12 @@ export class ProductEditComponent implements OnInit {
       );
   }
 
+  closeDialog(event: any) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.dialogRef.close();
+  }
+
   checkTimeOut() {
     clearTimeout(this.timeOutCount);
     this.timeOutCount = setTimeout(() => this.checkAvailableCode(), this.timeOutDelay);
@@ -72,7 +80,7 @@ export class ProductEditComponent implements OnInit {
 
   checkAvailableCode() {
     if (this.form && !this.form.controls['code'].errors) {
-      this.productService.isAvailableCode(this.form.controls['code'].value)
+      this.productService.isAvailableCode(this.form.controls['code'].value, this.form.controls['id'].value)
         .then(
           () => {
             this.form.controls['code'].setErrors(null);
@@ -81,6 +89,40 @@ export class ProductEditComponent implements OnInit {
             if (error.status === 400) {
               this.form.controls['code'].setErrors({duplicatedCode: true});
             }
+          }
+        );
+    }
+  }
+
+  updateProduct(event: any) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (this.form.valid) {
+      const productUM = this.form.value;
+      ['originalPrice', 'sellPrice'].forEach((e) => {
+        productUM[e] = +`${productUM[e]}`.split(',').join('');
+      });
+      this.productService.updateProduct(productUM)
+        .then(
+          (response) => {
+            this.dialogRef.close();
+            Swal.fire({
+              title: '',
+              text: 'Thành công',
+              type: 'success',
+              timer: 1000,
+              showConfirmButton: false,
+            });
+          },
+          error => {
+            console.error(error);
+            Swal.fire({
+              title: '',
+              text: 'Đã có lỗi xảy ra',
+              type: 'error',
+              timer: 1000,
+              showConfirmButton: false,
+            });
           }
         );
     }

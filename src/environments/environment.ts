@@ -12,6 +12,9 @@ export const environment = {
       login: 'api/Account/LoginV2',
       getAdminInfo: 'api/Account/GetAdminInformation',
       changePassword: 'api/Account/ChangePassword',
+      getUsers: '/api/Account/GetUsers',
+      createUser: '/api/Account/CreateUser',
+      deleteUser: '/api/Account/DeleteUser',
     },
     product: {
       getProduct: '/api/Product/GetProduct',
@@ -23,6 +26,14 @@ export const environment = {
     },
     category: {
       getCategories: '/api/Category/GetCategories',
+      createCategory: '/api/Category/CreateCategory',
+      updateCategory: '/api/Category/UpdateCategory',
+      deleteCategory: '/api/Category/DeleteCategory',
+    },
+    storage: {
+      getStorages: '/api/Storage/GetStorages',
+      issue: '/api/Storage/Issue',
+      receive: '/api/Storage/Receive',
     },
   },
 };

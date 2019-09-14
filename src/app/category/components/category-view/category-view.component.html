@@ -1,0 +1,28 @@
+<kendo-grid
+  class="kudo-grid fixed"
+  [data]="data"
+  [height]="'auto'"
+  [columnMenu]="false">
+  <ng-template kendoGridToolbarTemplate>
+    <button
+      mat-raised-button
+      class="btn btn-warning"
+      (click)="openCreateDialog()">
+      Thêm loại sản phẩm
+    </button>
+  </ng-template>
+  <kendo-grid-column field="name" title="Tên loại sản phẩm" width="500">
+  </kendo-grid-column>
+  <kendo-grid-column
+    title="Thao tác"
+    width="150">
+    <ng-template kendoGridCellTemplate let-dataItem>
+        <button mat-raised-button class="btn btn-warning btn-round btn-just-icon mr-2" (click)="openEditDialog(dataItem)" title="Cập nhật">
+          <i class="material-icons">edit</i>
+        </button>
+      <button mat-raised-button class="btn btn-danger btn-round btn-just-icon" (click)="delete(dataItem.id)" title="Xóa">
+        <i class="material-icons">delete</i>
+      </button>
+    </ng-template>
+  </kendo-grid-column>
+</kendo-grid>

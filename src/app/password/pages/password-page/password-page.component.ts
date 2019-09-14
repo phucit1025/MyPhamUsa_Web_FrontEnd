@@ -36,7 +36,7 @@ export class PasswordPageComponent implements OnInit {
       this.passwordService.changePassword(changePasswordModel)
         .then(
           (response) => {
-            console.log(response);
+            this.form.reset();
             Swal.fire({
               title: '',
               text: 'Thành công',

@@ -87,10 +87,39 @@
     }
   }
 }
+.kudo-previewing-image-wrapper {
+  max-width: 100%;
+  position: relative;
+  .kudo-previewing-image {
+    display: block;
+    max-width: 100%;
+  }
+}
+.kudo-close-previewing-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 100;
+  align-self: center;
+  font-size: 16px;
+  color: rgba(255,255,255,.85);
+  cursor: pointer;
+}
 ::ng-deep {
-  kudo-image-upload:focus {
-    .kudo-image-upload-placeholder-button {
-      border-color: #7a8994 !important;
+  .mat-form-field-type-kudo-image-upload {
+    kudo-image-upload:focus {
+      .kudo-image-upload-placeholder-button {
+        border-color: #7a8994 !important;
+      }
+    }
+    &.mat-form-field-disabled {
+      .mat-form-field-label {
+        color: rgba(0,0,0,.54) !important;
+        display: inline-block;
+      }
+      .mat-form-field-ripple {
+        display: none;
+      }
     }
   }
 }
